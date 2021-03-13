@@ -1,0 +1,15 @@
+Package: PROJECT3PACKAGE
+Title: Package Building Project
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Sean",
+           family = "Grimm",
+           role = c("aut", "cre"),
+           email = "seang9@uw.edu",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: This package demonstrates package building for STAT 302 at UW.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
