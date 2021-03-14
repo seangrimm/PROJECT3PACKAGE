@@ -6,6 +6,25 @@
 \usage{
 my_t.test(x, alternative, mu)
 }
+\arguments{
+\item{x}{Numeric vector of data to be used in the t-test.}
+
+\item{alternative}{Character string indicating type of alternative
+hypothesis. Only accepts "\code{two.sided}", "\code{less}" or
+"\code{greater}".}
+
+\item{mu}{Numeric input indicating the value of the mean for the null
+hypothesis.}
+}
+\value{
+Returns a list containing the t-test test statistic, the degrees of
+freedom used, the given \code{alternative}, and the resulting p-value.
+}
 \description{
-This function performs a t-test
+This function performs a t-test.
+}
+\examples{
+my_t.test(c(1, 2, 3, 4, 5), "two.sided", 1)
+my_t.test(c(1, 2, 3, 4, 5), "less", 1)
+
 }
