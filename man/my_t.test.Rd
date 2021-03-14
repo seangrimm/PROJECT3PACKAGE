@@ -28,3 +28,4 @@ my_t.test(c(1, 2, 3, 4, 5), "two.sided", 1)
 my_t.test(c(1, 2, 3, 4, 5), "less", 1)
 
 }
+\keyword{inference}

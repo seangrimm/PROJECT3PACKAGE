@@ -9,6 +9,8 @@
 #' @param mu Numeric input indicating the value of the mean for the null
 #'   hypothesis.
 #'
+#' @keywords inference
+#'
 #' @return Returns a list containing the t-test test statistic, the degrees of
 #'   freedom used, the given \code{alternative}, and the resulting p-value.
 #'
