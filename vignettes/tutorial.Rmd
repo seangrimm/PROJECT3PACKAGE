@@ -21,27 +21,31 @@ library(PROJECT3PACKAGE)
 
 # my_t.test
 
-The following shows example uses of ```my_t.test``` . Using the ```my_gapminder``` data, we calculate the mean life expectancy in this data set is about 59.47 years. We will conduct three t-tests to assess the validity of the null hypothesis $\{H_{0}}$ = 60.
+The following shows example uses of ```my_t.test``` . Using the ```my_gapminder``` data set, we calculate the mean life expectancy in this data set is about 59.47 years. We will conduct three t-tests to assess the validity of the null hypothesis $H_{0} = 60$ with a significance level $\alpha = 0.05$.
 
 ```{r}
+data("my_gapminder")
 life_expectancy <- my_gapminder[["lifeExp"]]
 mean(life_expectancy)
 ```
 
+## alternative = "two.sided"
 ```{r}
 my_t.test(life_expectancy, "two.sided", 60)
 ```
 
-In this test, we see that the returned p-value is about 0.093. Since we used ```alternative = "two.sided"```, this precisely means that, assuming the mean life expectancy is indeed 60, there is a probability of 0.093 that another sample of the exact same size taken under the exact same conditions will be as or more extreme as the mean life expectancy of our data set. Using the significance level $\alpha$ = 0.05, we would fail to reject the null hypothesis. As such, we cannot conclude that the mean life expectancy from our data set is not 60.
+Using $H_{a} \neq 60$, we see that the returned p-value is about 0.093. Since we used ```alternative = "two.sided"```, this precisely means that, assuming the mean life expectancy is indeed 60 years, there is a probability of 0.093 that another sample of the same size taken under the same conditions will be as or more extreme as the mean life expectancy of our data set. Using our significance level $\alpha = 0.05$, we would fail to reject the null hypothesis. As such, we cannot conclude that the mean life expectancy from our data set is not 60.
 
+## alternative = "less"
 ```{r}
 my_t.test(life_expectancy, "less", 60)
 ```
 
-This t-test yields a p-value of about 0.046. Since the p-value is less than our significance level $\alpha$ = 0.05, we would reject the null hypothesis in this case, thus concluding that the mean life expectancy of the data set is, in actuality, less than 60.
+Using $H_{a} < 60$ yields a p-value of about 0.046. In this instance, this means that, assuming the true mean life expectancy is 60 years, there is a probability of 0.046 that the mean life expectancy of another sample of the same size taken under the same conditions will be less than or equal to the mean life expectancy of our data. Since the p-value is less than our significance level $\alpha = 0.05$, we would reject the null hypothesis in this case, thus concluding that the mean life expectancy of the data set is, in actuality, less than 60.
 
+## alternative = "greater"
 ```{r}
 my_t.test(life_expectancy, "greater", 60)
 ```
 
-Lastly, this t-test yields a p-value of about 0.953. This is far larger than our significance level $\alpha$ = 0.05, and as such, we would fail to reject the null hypothesis. Once again, we would not be able to conclude that the mean life expectancy for the data set is not 60.
+Lastly, using $H_{a} > 60$ returns a p-value of about 0.953. This precisely means that, assuming the mean life expectancy really is 60 years, there is a probability of 0.953 that the mean life expectancy of another same of the same size taken under the same conditions will be greater than or equal to the mean life expectancy of our data. This is far larger than our significance level $\alpha = 0.05$, and as such, we would fail to reject the null hypothesis. Once again, we would not be able to conclude that the mean life expectancy for the data set is not 60.

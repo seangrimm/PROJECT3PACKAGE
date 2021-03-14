@@ -9,6 +9,7 @@ Authors@R:
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: This package demonstrates package building for STAT 302 at UW.
 License: GPL-3
+Imports: tibble, dplyr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
