@@ -1,8 +1,9 @@
 ---
 title: "Project 3: PROJECT3PACKAGE Tutorial"
+author: "Sean Grimm"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Project 3: PROJECT3PACKAGE Tutorial}
+  %\VignetteIndexEntry{PROJECT3PACKAGE Tutorial}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,4 +17,8 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(PROJECT3PACKAGE)
+```
+
+```{r}
+2 * 2
 ```
