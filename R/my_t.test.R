@@ -11,8 +11,10 @@
 #'
 #' @keywords inference
 #'
-#' @return Returns a list containing the t-test test statistic, the degrees of
-#'   freedom used, the given \code{alternative}, and the resulting p-value.
+#' @return Returns a list containing a numeric representing the t-test test
+#'   statistic, an integer representing the degrees of freedom used, a string
+#'   representation of the given \code{alternative}, and a numeric representing
+#'   the resulting p-value.
 #'
 #' @examples
 #' my_t.test(c(1, 2, 3, 4, 5), "two.sided", 1)

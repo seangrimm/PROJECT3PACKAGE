@@ -7,9 +7,9 @@
 #'
 #' @keywords inference
 #'
-#' @return A table containing estimated values, standard errors, t-test
-#'   statistics, and two-sided p-values for all coefficients specified in
-#'   \code{formula}.
+#' @return A table of numeric values representing estimated values, standard
+#' errors, t-test statistics, and two-sided p-values for all coefficients
+#' given in \code{formula}.
 #'
 #' @examples
 #' my_lm(lifeExp ~ gdpPercap + continent, my_gapminder)

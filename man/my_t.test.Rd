@@ -17,8 +17,10 @@ hypothesis. Only accepts "\code{two.sided}", "\code{less}" or
 hypothesis.}
 }
 \value{
-Returns a list containing the t-test test statistic, the degrees of
-freedom used, the given \code{alternative}, and the resulting p-value.
+Returns a list containing a numeric representing the t-test test
+statistic, an integer representing the degrees of freedom used, a string
+representation of the given \code{alternative}, and a numeric representing
+the resulting p-value.
 }
 \description{
 This function performs a t-test.

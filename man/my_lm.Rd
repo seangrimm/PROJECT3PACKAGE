@@ -12,9 +12,9 @@ my_lm(formula, data)
 \item{data}{A data frame object that will be used to fit the model.}
 }
 \value{
-A table containing estimated values, standard errors, t-test
-statistics, and two-sided p-values for all coefficients specified in
-\code{formula}.
+A table of numeric values representing estimated values, standard
+errors, t-test statistics, and two-sided p-values for all coefficients
+given in \code{formula}.
 }
 \description{
 This function fits the given data to the given linear model formula.

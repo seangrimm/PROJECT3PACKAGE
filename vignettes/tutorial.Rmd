@@ -77,3 +77,5 @@ ggplot(data = compare_results, aes(x = life_expectancy, y = model_results)) +
 ```
 
 The plot above shows the difference between the actual life expectancy shown in `my_gapminder` and the predicted life expected based on the model created by `my_lm`. Based on the plot, we can see that while `my_gapminder` shows a minimum life expectancy of about 23 years, the minimum life expectancy predicted by our model ends up being closer to 50 years. This is clearly due to the calculated y-intercept, which suggests that minimum life expectancy, regardless of country, would be more than 47 years. Many of the predicts made by the model are overly high as a result. On the other hand, we can also see that the direction of the model is mostly correct, especially with countries with a higher life expectancy. However, the model's fit is overall rather poor, which suggests that GDP per capita and continent are perhaps not the best indicators of life expectancy.
+
+# 
