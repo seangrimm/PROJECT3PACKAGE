@@ -1,3 +1,20 @@
+#' Linear model function
+#'
+#' This function fits the given data to the given linear model formula.
+#'
+#' @param formula A formula class object based on variables from \code{data}.
+#' @param data A data frame object that will be used to fit the model.
+#'
+#' @keywords inference
+#'
+#' @return A table containing estimated values, standard errors, t-test
+#'   statistics, and two-sided p-values for all coefficients specified in
+#'   \code{formula}.
+#'
+#' @examples
+#' my_lm(lifeExp ~ gdpPercap + continent, my_gapminder)
+#'
+#' @export
 my_lm <- function(formula, data) {
   x <- model.matrix(formula, data)
   y <- model.response(model.frame(formula, data))
