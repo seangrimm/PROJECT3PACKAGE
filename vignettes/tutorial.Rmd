@@ -21,31 +21,59 @@ library(PROJECT3PACKAGE)
 
 # my_t.test
 
-The following shows example uses of ```my_t.test``` . Using the ```my_gapminder``` data set, we calculate the mean life expectancy in this data set is about 59.47 years. We will conduct three t-tests to assess the validity of the null hypothesis $H_{0} = 60$ with a significance level $\alpha = 0.05$.
+The following shows example uses of `my_t.test` . Using the `my_gapminder` data set, we calculate the mean life expectancy in this data set is about 59.47 years. We will conduct three t-tests to assess the validity of the null hypothesis $H_{0} = 60$ with a significance level $\alpha = 0.05$.
 
-```{r}
+```{r, include=TRUE}
 data("my_gapminder")
 life_expectancy <- my_gapminder[["lifeExp"]]
 mean(life_expectancy)
 ```
 
 ## alternative = "two.sided"
-```{r}
+```{r, include=TRUE}
 my_t.test(life_expectancy, "two.sided", 60)
 ```
 
-Using $H_{a} \neq 60$, we see that the returned p-value is about 0.093. Since we used ```alternative = "two.sided"```, this precisely means that, assuming the mean life expectancy is indeed 60 years, there is a probability of 0.093 that another sample of the same size taken under the same conditions will be as or more extreme as the mean life expectancy of our data set. Using our significance level $\alpha = 0.05$, we would fail to reject the null hypothesis. As such, we cannot conclude that the mean life expectancy from our data set is not 60.
+Using $H_{a} \neq 60$, we see that the returned p-value is about 0.093. Since we used `alternative = "two.sided"`, this precisely means that, assuming the mean life expectancy is indeed 60 years, there is a probability of 0.093 that another sample of the same size taken under the same conditions will be as or more extreme as the mean life expectancy of our data set. Using our significance level $\alpha = 0.05$, we would fail to reject the null hypothesis. As such, we cannot conclude that the mean life expectancy from our data set is not 60.
 
 ## alternative = "less"
-```{r}
+```{r, include=TRUE}
 my_t.test(life_expectancy, "less", 60)
 ```
 
 Using $H_{a} < 60$ yields a p-value of about 0.046. In this instance, this means that, assuming the true mean life expectancy is 60 years, there is a probability of 0.046 that the mean life expectancy of another sample of the same size taken under the same conditions will be less than or equal to the mean life expectancy of our data. Since the p-value is less than our significance level $\alpha = 0.05$, we would reject the null hypothesis in this case, thus concluding that the mean life expectancy of the data set is, in actuality, less than 60.
 
 ## alternative = "greater"
-```{r}
+```{r, include=TRUE}
 my_t.test(life_expectancy, "greater", 60)
 ```
 
 Lastly, using $H_{a} > 60$ returns a p-value of about 0.953. This precisely means that, assuming the mean life expectancy really is 60 years, there is a probability of 0.953 that the mean life expectancy of another same of the same size taken under the same conditions will be greater than or equal to the mean life expectancy of our data. This is far larger than our significance level $\alpha = 0.05$, and as such, we would fail to reject the null hypothesis. Once again, we would not be able to conclude that the mean life expectancy for the data set is not 60.
+
+# my_lm
+
+The following demonstrates the use of `my_lm`. In this demonstration, we will once again be using the `my_gapminder` data set, wherein we will create a linear model to predict life expectancy per country based on GDP per capita and continent.
+
+```{r, include=TRUE}
+my_lm(lifeExp ~ gdpPercap + continent, my_gapminder)
+```
+
+The produced linear model suggests that whenever the GDP per capita for any given country increases by 1, the life expectancy increases by about .0004 years, as is seen in the `Estimate` column. The values of the `Estimate` column for the `continent` rows indicate the predicted increase in life expectancy for countries found in those respective continents.
+
+The values in the `Std. Error`, `t value` and `Pr(>|t|)` columns are associated with a two-sided t-test conducted on the coefficients $\beta_{j}$ used in our linear model. For example, if we take $\beta_{1}$ to be our coefficient for GDP per capita, then our t-test on $\beta_{1}$ would be based on a null hypothesis $H_{0}: \beta_{1} = 0$ and an alternative hypothesis $H_{a}: \beta_{1} \neq 0$. The `Pr(>|t|)` column would then indicate the resulting p-value. For $\beta_{1}$, we see that the p_value is extremely small (about $8.55 \times 10^{-73}$). Using a significance level $\alpha = 0.05$, we would easily reject $H_{0}$. Thus, we are reasonably confident that GDP per capita does indeed have some effect on life expectancy.
+
+```{r, include=TRUE}
+library(ggplot2)
+model_results <- predict(lm(lifeExp ~ gdpPercap + continent, my_gapminder))
+compare_results <- data.frame(my_gapminder[["lifeExp"]], model_results)
+
+ggplot(data = compare_results, aes(x = life_expectancy, y = model_results)) +
+  geom_point(size = .1) +
+  labs(title = "Actual vs. Predicted", x = "actual (years)",
+       y = "predicted (years)") +
+  theme_bw() +
+  scale_x_continuous(limits = c(0, 110), breaks = seq(0, 110, 10)) +
+  scale_y_continuous(limits = c(0, 110), breaks = seq(0, 110, 10))
+```
+
+The plot above shows the difference between the actual life expectancy shown in `my_gapminder` and the predicted life expected based on the model created by `my_lm`. Based on the plot, we can see that while `my_gapminder` shows a minimum life expectancy of about 23 years, the minimum life expectancy predicted by our model ends up being closer to 50 years. This is clearly due to the calculated y-intercept, which suggests that minimum life expectancy, regardless of country, would be more than 47 years. Many of the predicts made by the model are overly high as a result. On the other hand, we can also see that the direction of the model is mostly correct, especially with countries with a higher life expectancy. However, the model's fit is overall rather poor, which suggests that GDP per capita and continent are perhaps not the best indicators of life expectancy.
