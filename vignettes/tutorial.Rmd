@@ -62,7 +62,7 @@ The produced linear model suggests that whenever the GDP per capita for any give
 
 The values in the `Std. Error`, `t value` and `Pr(>|t|)` columns are associated with a two-sided t-test conducted on the coefficients $\beta_{j}$ used in our linear model. For example, if we take $\beta_{1}$ to be our coefficient for GDP per capita, then our t-test on $\beta_{1}$ would be based on a null hypothesis $H_{0}: \beta_{1} = 0$ and an alternative hypothesis $H_{a}: \beta_{1} \neq 0$. The `Pr(>|t|)` column would then indicate the resulting p-value. For $\beta_{1}$, we see that the p_value is extremely small (about $8.55 \times 10^{-73}$). Using a significance level $\alpha = 0.05$, we would easily reject $H_{0}$. Thus, we are reasonably confident that GDP per capita does indeed have some effect on life expectancy.
 
-```{r, include=TRUE}
+```{r, include=TRUE, fig.width=7, fig.height=4}
 library(ggplot2)
 model_results <- predict(lm(lifeExp ~ gdpPercap + continent, my_gapminder))
 compare_results <- data.frame(my_gapminder[["lifeExp"]], model_results)
