@@ -14,7 +14,8 @@
 #' @keywords prediction
 #'
 #' @return A list containing a vector of classifications predicted by the model
-#'   and a numeric representing the cross-validation estimate from the k-fold
+#'   using \code{train} as both the training data and the testing data and a
+#'   numeric representing the cross-validation estimate from the k-fold
 #'   cross-validation.
 #'
 #' @examples
@@ -38,21 +39,21 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
 
   for (i in 1:k_cv) {
     # separate into train and test
-    data_train <- data.frame(split_data %>% filter("fold" != i))
+    data_train <- split_data[which(split_data$fold != i), ]
     data_train <- subset.data.frame(data_train, select = -ncol(data_train))
 
-    data_test <- data.frame(split_data %>% filter("fold" == i))
+    data_test <- split_data[which(split_data$fold == i), ]
     data_test <-subset.data.frame(data_test, select = -ncol(data_test))
 
-    class_train <- data.frame(split_class %>% filter("fold" != i))
+    class_train <- split_class[which(split_class$fold != i), ]
     class_train <- subset.data.frame(class_train, select = -ncol(class_train))
 
-    class_test <- data.frame(split_class %>% filter("fold" == i))
+    class_test <- split_class[which(split_class$fold == i), ]
     class_test <- subset.data.frame(class_test, select = -ncol(class_test))
 
     # determine model results and error
-    result <- class::knn(data_train, data_test, class_train[[1]], k_nn)
-    cv_errs[i] <- mean(result != class_test[[1]])
+    result <- class::knn(data_train, data_test, unlist(class_train), k_nn)
+    cv_errs[i] <- mean(result != unlist(class_test))
   }
 
   class <- class::knn(train, train, cl[[1]], k_nn)

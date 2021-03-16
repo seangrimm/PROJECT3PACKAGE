@@ -1,6 +1,6 @@
 test_that("proper output", {
   expect_equal(my_knn_cv(na.omit(my_penguins)[,3:6], na.omit(my_penguins)[1],
-                         5, 1)[[2]], 1)
+                         1, 5)[[2]], .15, tolerance = .34)
 })
 
 test_that("errors received when appropriate", {

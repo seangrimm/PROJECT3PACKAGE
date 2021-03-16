@@ -76,6 +76,51 @@ ggplot(data = compare_results, aes(x = life_expectancy, y = model_results)) +
   scale_y_continuous(limits = c(0, 110), breaks = seq(0, 110, 10))
 ```
 
-The plot above shows the difference between the actual life expectancy shown in `my_gapminder` and the predicted life expected based on the model created by `my_lm`. Based on the plot, we can see that while `my_gapminder` shows a minimum life expectancy of about 23 years, the minimum life expectancy predicted by our model ends up being closer to 50 years. This is clearly due to the calculated y-intercept, which suggests that minimum life expectancy, regardless of country, would be more than 47 years. Many of the predicts made by the model are overly high as a result. On the other hand, we can also see that the direction of the model is mostly correct, especially with countries with a higher life expectancy. However, the model's fit is overall rather poor, which suggests that GDP per capita and continent are perhaps not the best indicators of life expectancy.
+The plot above shows the difference between the actual life expectancy shown in `my_gapminder` and the predicted life expected based on the model created by `my_lm`. Based on the plot, we can see that while `my_gapminder` shows a minimum life expectancy of about 23 years, the minimum life expectancy predicted by our model ends up being closer to 50 years. This is clearly due to the calculated y-intercept, which suggests that minimum life expectancy, regardless of country, would be more than 47 years. Many of the predicts made by the model are overly high as a result. On the other hand, we can also see that the direction of the model is mostly correct, especially with countries with a higher life expectancy. However, the model's fit is overall rather poor, which suggests that `gdpPercap` and `continent` are perhaps not the best indicators of life expectancy.
 
-# 
+# my_knn_cv
+
+Next, we will demonstrate the use of `my_knn_cv` using the `my_penguins` data set. In this demonstration, we will attempt to predict the `species` using `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm` and `body_mass_g`. Ten different models will be created using 1 through 10 neighbors in the k-nearest neighbors algorithm. All models will use 5-fold cross validation.
+
+```{r, include=TRUE}
+# separate data
+train <- na.omit(my_penguins)[,3:6]
+cl <- na.omit(my_penguins)[1]
+
+# build models, acquire predictions
+knn_1 <- my_knn_cv(train, cl, 1, 5)
+knn_2 <- my_knn_cv(train, cl, 2, 5)
+knn_3 <- my_knn_cv(train, cl, 3, 5)
+knn_4 <- my_knn_cv(train, cl, 4, 5)
+knn_5 <- my_knn_cv(train, cl, 5, 5)
+knn_6 <- my_knn_cv(train, cl, 6, 5)
+knn_7 <- my_knn_cv(train, cl, 7, 5)
+knn_8 <- my_knn_cv(train, cl, 8, 5)
+knn_9 <- my_knn_cv(train, cl, 9, 5)
+knn_10 <- my_knn_cv(train, cl, 10, 5)
+knn_vect <- c(knn_1, knn_2, knn_3, knn_4, knn_5, knn_6, knn_7, knn_8, knn_9,
+              knn_10)
+
+# compile error data
+miss_rate <- rep(0, 10)
+cv_error <- rep(0, 10)
+
+for (i in 1:10) {
+  for (j in 1:length(knn_vect[(2 * i) - 1])) {
+    miss_rate[i] <- mean(cl != as.vector(knn_vect[(2 * i) - 1][j]))
+  }
+  cv_error[i] <- knn_vect[2 * i]
+}
+
+cv_error <- unlist(cv_error)
+
+error_table <- matrix(c(miss_rate, cv_error), nrow = 10, ncol = 2)
+rownames(error_table) <- seq(1, 10)
+colnames(error_table) <- c("Training misclassification",
+                           "CV misclassification")
+as.table(error_table)
+```
+
+The table above shows the change in training misclassification rate and cross-validation misclassification error using $k = 1,...,10$ neighbors for the k-nearest neighbors algorithm. Based on both the training misclassification rates and the cross-validation error, it would seem that using $k = 1$ in k-nearest neighbors yields the best model for predicting `species` based on `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm` and `body_mass_g`. However, in many situations, using $k = 1$ neighbors would likely produce an over-fitted model. As such, though I would keep the $k = 1$ model on hand to further test its effectiveness, I would choose a model that balances the above errors while also avoiding having an over-fitted model, such as with $k = 4$.
+
+Furthermore, we are potentially more confident in our model due to our use of k-fold cross-validation. In our case of using $k = 5$ for k-fold cross-validation, we split the training data up into five "folds." From these folds, five models were created, where each model would have one fold as the testing set while the remaining four folds are used to train the model. In doing this process, we are able to gain estimates for the performance of different models, which would allow us to perhaps choose the best of several different models produced.

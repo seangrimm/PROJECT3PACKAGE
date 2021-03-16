@@ -19,7 +19,8 @@ into for k-fold cross-validation.}
 }
 \value{
 A list containing a vector of classifications predicted by the model
-and a numeric representing the cross-validation estimate from the k-fold
+using \code{train} as both the training data and the testing data and a
+numeric representing the cross-validation estimate from the k-fold
 cross-validation.
 }
 \description{
