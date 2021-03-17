@@ -21,7 +21,7 @@ Builds a classification model for the \code{my_penguins} data set to predict
 k = \code{k}.
 }
 \examples{
-my_rf_cv(1)
+my_rf_cv(2)
 my_rf_cv(5)
 
 }

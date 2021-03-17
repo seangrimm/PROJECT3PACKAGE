@@ -14,7 +14,7 @@
 #'   cross-validation.
 #'
 #' @examples
-#' my_rf_cv(1)
+#' my_rf_cv(2)
 #' my_rf_cv(5)
 #'
 #' @export
