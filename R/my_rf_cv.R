@@ -6,7 +6,7 @@
 #' k = \code{k}.
 #'
 #' @param k Integer indicating how many folds \code{train} will be divided
-#'   into for k-fold cross-validation.
+#'   into for k-fold cross-validation. Must have \code{k} >= 2.
 #'
 #' @keywords prediction
 #'
@@ -14,6 +14,7 @@
 #'   cross-validation.
 #'
 #' @examples
+#' my_rf_cv(1)
 #' my_rf_cv(5)
 #'
 #' @export

@@ -9,7 +9,7 @@
 #' @param k_nn Integer indicating how many neighbors should be considered in the
 #'   k-nearest neighbors algorithm.
 #' @param k_cv Integer indicating how many folds \code{train} will be divided
-#'   into for k-fold cross-validation.
+#'   into for k-fold cross-validation. Must have \code{k_cv} >= 2.
 #'
 #' @keywords prediction
 #'

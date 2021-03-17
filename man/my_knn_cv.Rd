@@ -15,7 +15,7 @@ my_knn_cv(train, cl, k_nn, k_cv)
 k-nearest neighbors algorithm.}
 
 \item{k_cv}{Integer indicating how many folds \code{train} will be divided
-into for k-fold cross-validation.}
+into for k-fold cross-validation. Must have \code{k_cv} >= 2.}
 }
 \value{
 A list containing a vector of classifications predicted by the model

@@ -8,7 +8,7 @@ my_rf_cv(k)
 }
 \arguments{
 \item{k}{Integer indicating how many folds \code{train} will be divided
-into for k-fold cross-validation.}
+into for k-fold cross-validation. Must have \code{k} >= 2.}
 }
 \value{
 numeric representing the cross-validation error from the k-fold
@@ -21,6 +21,7 @@ Builds a classification model for the \code{my_penguins} data set to predict
 k = \code{k}.
 }
 \examples{
+my_rf_cv(1)
 my_rf_cv(5)
 
 }
