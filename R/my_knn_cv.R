@@ -1,7 +1,7 @@
 #' k-nearest neighbors with cross validation
 #'
 #' Builds a classification model for data \code{train} using the k-nearest
-#' neighbors algorithm with k = \code{k_nn} and then applies k-fold
+#' neighbors algorithm with k = \code{k_nn} and applies k-fold
 #' cross-validation with k = \code{k_cv}.
 #'
 #' @param train Data frame used for training the model.
@@ -15,7 +15,7 @@
 #'
 #' @return A list containing a vector of classifications predicted by the model
 #'   using \code{train} as both the training data and the testing data and a
-#'   numeric representing the cross-validation estimate from the k-fold
+#'   numeric representing the cross-validation error from the k-fold
 #'   cross-validation.
 #'
 #' @examples
