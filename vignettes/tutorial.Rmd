@@ -15,6 +15,21 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Introduction
+
+`PROJECT3PACKAGE` primarily contains functions that can be used for statistical inference and prediction. Functions include `my_t.test` for performing t-tests, `my_lm`, for building linear models, `my_knn_cv` for performing the k-nearest neighbors algorithm with k-fold cross-validation, and `my_rf_cv` for performing the random forest algorithm with k-fold cross-validation. Other functions include `f_to_c` for converting temperatures from Fahrenheit to Celsius and the all-important `my_pow`, which computes exponents.
+
+## Installation
+
+You can install `PROJECT3PACKAGE` using the following lines:
+
+```{r, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("seangrimm/PROJECT3PACKAGE", build_vignette = TRUE, build_opts = c())
+```
+
+Afterwards, functions from `PROJECT3PACKAGE` can be access after running the following:
+
 ```{r setup}
 library(PROJECT3PACKAGE)
 ```

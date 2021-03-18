@@ -2,18 +2,18 @@
 % Please edit documentation in R/f_to_c.R
 \name{f_to_c}
 \alias{f_to_c}
-\title{Farenheit converter}
+\title{Fahrenheit converter}
 \usage{
 f_to_c(temp_F)
 }
 \arguments{
-\item{temp_F}{Numeric input indicating temperature in Farenheit.}
+\item{temp_F}{Numeric input indicating temperature in Fahrenheit.}
 }
 \value{
 Numeric indicating temperature \code{temp_F} converted to Celsius.
 }
 \description{
-This function converts temperature from Farenheit to Celsius.
+This function converts temperature from Fahrenheit to Celsius.
 }
 \examples{
 f_to_c(32)

@@ -7,8 +7,8 @@ Authors@R:
            role = c("aut", "cre"),
            email = "seang9@uw.edu",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: This package demonstrates package building for STAT 302 at UW.
-License: GPL-3
+Description: A demonstration of package building for STAT 302 at UW.
+License: GPL (>= 3)
 Imports: 
     tibble,
     dplyr,
